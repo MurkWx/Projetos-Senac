@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Fiscaliza Já</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector("#container");
+    const linkRegistrar = document.querySelector("#cadastre-se");
+    const linkVoltar = document.querySelector("#voltar-login");
+    const painelLogin = document.querySelector("#login");
+    const painelCadastro = document.querySelector("#cadastro");
+
+    linkRegistrar.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      container.classList.add("modo-cadastro");
+      painelLogin.setAttribute("aria-hidden", "true");
+      painelCadastro.setAttribute("aria-hidden", "false");
+    });
+
+    linkVoltar.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      container.classList.remove("modo-cadastro");
+      painelLogin.setAttribute("aria-hidden", "false");
+      painelCadastro.setAttribute("aria-hidden", "true");
+    });
+  });
+    </script>
+
+    <style>
+
+        /* 
+        #41AA23 Verde
+ 
+        #FA6900 Laranja
+ 
+        #002D87 Azul
+        */
+
+      * {
+        max-width: 1920px;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Media Query */
+      /* Tablet */
+      @media (max-width: 1024px) {
+        .container {
+          display: block;
+          width: 90%;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .container {
+          width: 95%;
+          flex-direction: column;
+        }
+      }
+
+      /* Key Move */
+      @keyframes move {
+        0%,
+        49.99% {
+          opacity: 0;
+          z-index: 1;
+        }
+
+        50%,
+        100% {
+          opacity: 1;
+          z-index: 5;
+        }
+      }
+
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        background-image: url(./Baixada-Santista.png);
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-color: rgb(113, 191, 255);
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      /* container */
+      #container {
+       position: relative;
+       overflow: hidden;
+      }
+
+      /* Lateral */
+      .container-aside {
+        display: flex;
+        margin: 0;
+        width: 768px;
+        min-height: 100vh;
+        background-color: #ffffff;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      /* Topo do painel */
+      .painel-cadastro .header-painel {
+        text-align: center;
+        color: #008000;
+      }
+
+      .painel-cadastro .header-painel{
+        font-size: 0.9em;
+      }
+      .header-painel {
+        background-color: #41AA23;
+        border-radius: 25px 25px 25px 25px;
+        padding: 1.5% 0%;
+        margin-top: 3%;
+      }
+      
+      .header-painel h2 {
+        font-size: 2.5em;
+        color: white;
+        
+      }
+      
+      .header-painel p{
+        color: #ffffff;
+        font-size: 1.4em;
+        text-align: center;
+        opacity: 90%;
+      }
+      
+      #header-login {
+        
+      }
+      
+      
+      #header-login .titulo {
+        font-size: 2.5em;
+        text-align: center;
+      }
+
+      /* Logo */
+      .logo {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .logo img{
+        width: 70%;
+        min-height: 100%;
+        min-width: 60%;
+      }
+
+      /* Login */
+
+      #login {
+        opacity: 1;
+        position: relative;
+        transform: translateX(0);
+        pointer-events: auto;
+        transition: 
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      
+      .painel-login {
+        display: flex;
+        flex-flow: column wrap;
+        margin: 3% 12%;
+        width: 100%;
+        justify-content: space-evenly;
+      }
+      
+      .login-box {
+        border-radius: 0 70px 70px 0;
+      }
+
+      /* Cadastro */
+
+      #cadastro {
+        position: absolute;
+        inset: 0;
+        transform: translateX(149%);
+        opacity: 0;
+        border-radius: 70px 0 0 70px;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .painel-cadastro {
+        flex-flow: column wrap;
+        margin: 10%;
+        width: 100%;
+        justify-content: space-around;
+      }
+
+
+      /* Modos transição */
+      #container.modo-cadastro #login {
+        transform: translateX(-100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #container.modo-cadastro #cadastro {
+        transform: translateX(150);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Botão */
+      .concluirBtn {
+      }
+
+      #voltar-login-box {
+        margin-top: 7%;
+      }
+
+      #voltar-login-box a{
+        color: green;
+      }
+
+
+      /* Forms */
+      .forms {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+      }
+
+      .forms div {
+        margin: 2.5% 0;
+        width: 90%;
+      }
+
+      #dados-pessoais{
+        margin: 2% 0;
+      }
+
+      #estado-cidade{
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
+      }
+
+      /* Inputs */
+      .div-input { 
+      }
+
+      input {
+        width: 95%;
+        padding: 14px 10px;
+        border-radius: 8px;
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.295);
+        background-color: #e4e4e400;
+      }
+
+      input:focus {
+        box-shadow: 2px 1px 3px 2px rgba(0, 0, 0, 0.336);
+        border: none;
+        box-sizing: none;
+      }
+
+      input::placeholder {
+        color: #808080;
+        font-style: italic;
+        opacity: 0.8;
+      }
+
+      /* Labels */
+      .div-input label {
+        font-weight: 500;
+        opacity: 95%;
+      }
+
+
+      /* Links */
+      .div-esqueceu a {
+        color: rgb(0, 0, 0);
+        font-weight: 500;
+        opacity: 80%;
+        text-align: right;
+      }
+
+      #cadastre-se {
+        color: green;
+      }
+
+      a {
+        text-decoration: underline;
+      }
+
+      /*  Botões */
+      .div-botao {
+        margin-top: 3%;
+        text-align: center;
+      }
+
+      button {
+        width: 100%;
+        padding: 2.5%;
+        border-radius: 18px;
+        border: none;
+        font-size: 1.5em;
+        background-color: #fa6900;
+        min-width: 95%;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      /* Transições e efeitos */
+      .div-botao button:hover {
+        background-color: #ff7817;
+        transition: 0.2s ease-out;
+      }
+    </style>
+  </head>
+
+  <!-- Login -->
+
+  <body>
+    <main id="container">
+      <aside id="login" class="container-aside login-box">
+        <div class="painel-login">
+          <div class="logo">
+            <img src="./Logotipo Fiscaliza Já sem fundo.png" alt="Fiscaliza Já Logo">
+          </div>
+          <div class="header-painel">
+            <div id="header-login">
+              <h2 class="titulo">Bem-vindo de volta!</h2>
+              <p>Fiscalize e reporte problemas de sua cidade.</p>
+            </div>
+          </div>
+          <form action="#" method="post" class="forms">
+            <div class="div-input">
+              <label for="email">E-mail</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="exemplo@fiscalizeja.com"
+                required
+              />
+            </div>
+
+            <div class="div-input">
+              <label for="senha">Senha</label>
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha de acesso"
+                required
+              />
+            </div>
+
+            <!-- <div class="div-checkbox">
+            <input type="checkbox" id="lembrar" name="lembrar" />
+            <label for="lembrar">Lembrar</label>
+          </div> -->
+
+            <div class="div-esqueceu">
+              <a href="#">Esqueceu a senha?</a>
+            </div>
+
+            <div class="div-botao">
+              <button class="concluirBtn" type="submit">Entrar em sua conta</button>
+            </div>
+          </form>
+
+          <p class="div-registre-se">
+            Ainda não possui conta?
+            <a id="cadastre-se" href="#">Cadastre-se</a>
+          </p>
+        </div>
+      </aside>
+
+      <!-- Cadastro -->
+
+      <aside id="cadastro" class="container-aside" aria-hidden="true">
+        <div class="painel-cadastro">
+           <div class="logo">
+            <img src="./Logotipo Fiscaliza Já sem fundo.png" alt="Fiscaliza Já Logo">
+          </div>
+          <div class="header-painel">
+              <h2 class="titulo">Crie sua conta e fiscaliza já!</h2>
+              <p>Cadastre-se para fiscalizar sua cidade.</p>
+          </div>
+
+
+          <!-- Dados Pessoais -->
+           <form action="#" method="post" class="forms">
+            <div id="dados-pessoais">
+              <div class="div-input">
+                <label for="nome">Nome</label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  placeholder="Digite seu nome"
+                  required
+                />
+              </div>
+
+              <div class="div-input">
+                <label for="email-cadastro">E-mail</label>
+                <input
+                  type="email"
+                  id="email-cadastro"
+                  name="email"
+                  placeholder="exemplo@fiscalizaja.com.br"
+                  required
+                />
+              </div>
+
+              <div class="div-input">
+                <label for="senha-cadastro">Senha</label>
+                <input
+                  type="password"
+                  id="senha-cadastro"
+                  name="senha"
+                  placeholder="Crie uma senha"
+                  required
+                />
+              </div>
+
+              <div class="div-input">
+                <label for="senha-cadastro">Confirme sua senha</label>
+                <input
+                  type="password"
+                  id="confirme-senha"
+                  name="confirme-senha"
+                  placeholder="Confirme sua senha"
+                  required
+                />
+              </div>
+            </div>
+            <!-- Estado e Cidade -->
+
+          <div id="estado-cidade">
+            <div class="div-input">
+              <label for="estado">Estado</label>
+              <input
+                type="text"
+                id="estado"
+                name="estado"
+                placeholder="Digite o seu estado"
+                required
+              />
+            </div>
+
+            <div class="div-input">
+              <label for="cidade">Cidade</label>
+              <input
+                type="text"
+                id="cidade"
+                name="cidade"
+                placeholder="Digite o nome de sua cidade"
+                required
+              />
+            </div>
+          </div>
+        </form>
+
+            <div class="div-botao">
+              <button class="concluirBtn" type="submit">Criar conta</button>
+            </div>
+          
+        <div id="voltar-login-box">
+          <p>
+            Já possui uma conta?
+            <a id="voltar-login" href="#">Entrar</a>
+          </p>
+        </div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>
