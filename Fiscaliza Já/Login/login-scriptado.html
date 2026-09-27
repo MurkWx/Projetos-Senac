@@ -9,348 +9,424 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const container = document.querySelector("#container");
-    const linkRegistrar = document.querySelector("#cadastre-se");
-    const linkVoltar = document.querySelector("#voltar-login");
-    const painelLogin = document.querySelector("#login");
-    const painelCadastro = document.querySelector("#cadastro");
+      document.addEventListener("DOMContentLoaded", () => {
+        const container = document.querySelector("#container");
+        const linkRegistrar = document.querySelector("#cadastre-se");
+        const linkVoltar = document.querySelector("#voltar-login");
+        const painelLogin = document.querySelector("#login");
+        const painelCadastro = document.querySelector("#cadastro");
 
-    linkRegistrar.addEventListener("click", (event) => {
-      event.preventDefault();
+        linkRegistrar.addEventListener("click", (event) => {
+          event.preventDefault();
+          container.classList.add("modo-cadastro");
+          painelLogin.setAttribute("aria-hidden", "true");
+          painelLogin.setAttribute("tabindex", "-1");
+          painelCadastro.setAttribute("aria-hidden", "false");
+          painelCadastro.removeAttribute("tabindex");
+        });
 
-      container.classList.add("modo-cadastro");
-      painelLogin.setAttribute("aria-hidden", "true");
-      painelCadastro.setAttribute("aria-hidden", "false");
-    });
-
-    linkVoltar.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      container.classList.remove("modo-cadastro");
-      painelLogin.setAttribute("aria-hidden", "false");
-      painelCadastro.setAttribute("aria-hidden", "true");
-    });
-  });
+        linkVoltar.addEventListener("click", (event) => {
+          event.preventDefault();
+          container.classList.remove("modo-cadastro");
+          painelLogin.setAttribute("aria-hidden", "false");
+          painelLogin.removeAttribute("tabindex");
+          painelCadastro.setAttribute("aria-hidden", "true");
+          painelCadastro.setAttribute("tabindex", "-1");
+        });
+      });
     </script>
 
-    <style>
+<style>
+  /* 
+    #41AA23 Verde
+    #FA6900 Laranja
+    #002D87 Azul
+  */
 
-        /* 
-        #41AA23 Verde
- 
-        #FA6900 Laranja
- 
-        #002D87 Azul
-        */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-      * {
-        max-width: 1920px;
-        margin: 0;
-        padding: 0;
-      }
+  /* Key Move */
+  @keyframes move {
+    0%,
+    49.99% {
+      opacity: 0;
+      z-index: 1;
+    }
 
-      /* Media Query */
-      /* Tablet */
-      @media (max-width: 1024px) {
-        .container {
-          display: block;
-          width: 90%;
-        }
-      }
+    50%,
+    100% {
+      opacity: 1;
+      z-index: 5;
+    }
+  }
 
-      /* Mobile */
-      @media (max-width: 768px) {
-        .container {
-          width: 95%;
-          flex-direction: column;
-        }
-      }
+  body {
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+    background-image: url(./Baixada-Santista.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(113, 191, 255);
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 
-      /* Key Move */
-      @keyframes move {
-        0%,
-        49.99% {
-          opacity: 0;
-          z-index: 1;
-        }
+  a {
+    text-decoration: none;
+  }
 
-        50%,
-        100% {
-          opacity: 1;
-          z-index: 5;
-        }
-      }
+  /* container */
+  #container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    max-width: 1920px;
+    min-height: 100vh;
+  }
 
-      body {
-        font-family:
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Oxygen,
-          Ubuntu,
-          Cantarell,
-          "Open Sans",
-          "Helvetica Neue",
-          sans-serif;
-        background-image: url(./Baixada-Santista.png);
-        background-size:cover;
-        background-repeat: no-repeat;
-        background-color: rgb(113, 191, 255);
-        min-height: 100vh;
-        overflow: hidden;
-      }
+  /* Lateral */
+  .container-aside {
+    display: flex;
+    margin: 0;
+    width: 768px;
+    min-height: 100vh;
+    background-color: #ffffff;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+  }
 
-      a {
-        text-decoration: none;
-      }
+  /* Topo do painel */
+  .painel-cadastro .header-painel {
+    text-align: center;
+    color: #008000;
+  }
 
-      /* container */
-      #container {
-       position: relative;
-       overflow: hidden;
-      }
+  .painel-cadastro .header-painel {
+    font-size: 0.9em;
+  }
 
-      /* Lateral */
-      .container-aside {
-        display: flex;
-        margin: 0;
-        width: 768px;
-        min-height: 100vh;
-        background-color: #ffffff;
-        transition:
-          opacity 0.4s ease,
-          transform 0.4s ease;
-      }
-      /* Topo do painel */
-      .painel-cadastro .header-painel {
-        text-align: center;
-        color: #008000;
-      }
+  .header-painel {
+    background-color: #41aa23;
+    border-radius: 25px;
+    padding: 1.5% 0%;
+    margin-top: 3%;
+  }
 
-      .painel-cadastro .header-painel{
-        font-size: 0.9em;
-      }
-      .header-painel {
-        background-color: #41AA23;
-        border-radius: 25px 25px 25px 25px;
-        padding: 1.5% 0%;
-        margin-top: 3%;
-      }
-      
-      .header-painel h2 {
-        font-size: 2.5em;
-        color: white;
-        
-      }
-      
-      .header-painel p{
-        color: #ffffff;
-        font-size: 1.4em;
-        text-align: center;
-        opacity: 90%;
-      }
-      
-      #header-login {
-        
-      }
-      
-      
-      #header-login .titulo {
-        font-size: 2.5em;
-        text-align: center;
-      }
+  .header-painel h2 {
+    font-size: 2.5em;
+    color: white;
+  }
 
-      /* Logo */
-      .logo {
-        display: flex;
-        justify-content: space-around;
-      }
+  .header-painel p {
+    color: #ffffff;
+    font-size: 1.4em;
+    text-align: center;
+    opacity: 90%;
+  }
 
-      .logo img{
-        width: 70%;
-        min-height: 100%;
-        min-width: 60%;
-      }
+  #header-login .titulo {
+    font-size: 2.5em;
+    text-align: center;
+  }
 
-      /* Login */
+  /* Logo */
+  .logo {
+    display: flex;
+    justify-content: space-around;
+  }
 
-      #login {
-        opacity: 1;
-        position: relative;
-        transform: translateX(0);
-        pointer-events: auto;
-        transition: 
-          opacity 0.8s ease,
-          transform 0.8s ease;
-      }
-      
-      .painel-login {
-        display: flex;
-        flex-flow: column wrap;
-        margin: 3% 12%;
-        width: 100%;
-        justify-content: space-evenly;
-      }
-      
-      .login-box {
-        border-radius: 0 70px 70px 0;
-      }
+  .logo img {
+    width: 70%;
+    min-height: 100%;
+    min-width: 60%;
+  }
 
-      /* Cadastro */
+  /* Login */
+  #login {
+    opacity: 1;
+    position: relative;
+    transform: translateX(0);
+    pointer-events: auto;
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s ease;
+  }
 
-      #cadastro {
-        position: absolute;
-        inset: 0;
-        transform: translateX(149%);
-        opacity: 0;
-        border-radius: 70px 0 0 70px;
-        transition:
-          opacity 0.8s ease,
-          transform 0.8s ease;
-      }
+  .painel-login {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 3% 12%;
+    width: 100%;
+    justify-content: space-evenly;
+  }
 
-      .painel-cadastro {
-        flex-flow: column wrap;
-        margin: 10%;
-        width: 100%;
-        justify-content: space-around;
-      }
+  .login-box {
+    border-radius: 0 70px 70px 0;
+  }
 
+  /* Cadastro */
+  #cadastro {
+    position: absolute;
+    inset: 0;
+    transform: translateX(149%);
+    opacity: 0;
+    border-radius: 70px 0 0 70px;
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s ease;
+  }
 
-      /* Modos transição */
-      #container.modo-cadastro #login {
-        transform: translateX(-100%);
-        opacity: 0;
-        pointer-events: none;
-      }
+  .painel-cadastro {
+    flex-flow: column wrap;
+    margin: 10%;
+    width: 100%;
+    justify-content: space-around;
+  }
 
-      #container.modo-cadastro #cadastro {
-        transform: translateX(150);
-        opacity: 1;
-        pointer-events: auto;
-      }
+  /* Modos transição */
+  #container.modo-cadastro #login {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
 
-      /* Botão */
-      .concluirBtn {
-      }
+  #container.modo-cadastro #cadastro {
+    transform: translateX(150%);
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-      #voltar-login-box {
-        margin-top: 7%;
-      }
+  /* Botão */
+  #voltar-login-box {
+    margin-top: 7%;
+  }
 
-      #voltar-login-box a{
-        color: green;
-      }
+  #voltar-login-box a {
+    color: green;
+  }
 
+  /* Forms */
+  .forms {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+  }
 
-      /* Forms */
-      .forms {
-        display: flex;
-        flex-flow: column nowrap;
-        width: 100%;
-      }
+  .forms div {
+    margin: 2.5% 0;
+    width: 90%;
+  }
 
-      .forms div {
-        margin: 2.5% 0;
-        width: 90%;
-      }
+  #dados-pessoais {
+    margin: 2% 0;
+  }
 
-      #dados-pessoais{
-        margin: 2% 0;
-      }
+  #estado-cidade {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+  }
 
-      #estado-cidade{
-        display: flex;
-        justify-content: space-around;
-        width: 80%;
-      }
+  /* Inputs */
+  input {
+    width: 95%;
+    padding: 14px 10px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.295);
+    background-color: #e4e4e400;
+  }
 
-      /* Inputs */
-      .div-input { 
-      }
+  input:focus {
+    box-shadow: 2px 1px 3px 2px rgba(0, 0, 0, 0.336);
+    border: none;
+    box-sizing: none;
+  }
 
-      input {
-        width: 95%;
-        padding: 14px 10px;
-        border-radius: 8px;
-        box-sizing: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.295);
-        background-color: #e4e4e400;
-      }
+  input::placeholder {
+    color: #808080;
+    font-style: italic;
+    opacity: 0.8;
+  }
 
-      input:focus {
-        box-shadow: 2px 1px 3px 2px rgba(0, 0, 0, 0.336);
-        border: none;
-        box-sizing: none;
-      }
+  /* Labels */
+  .div-input label {
+    font-weight: 500;
+    opacity: 95%;
+  }
 
-      input::placeholder {
-        color: #808080;
-        font-style: italic;
-        opacity: 0.8;
-      }
+  /* Links */
+  .div-esqueceu a {
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    opacity: 80%;
+    text-align: right;
+  }
 
-      /* Labels */
-      .div-input label {
-        font-weight: 500;
-        opacity: 95%;
-      }
+  #cadastre-se {
+    color: green;
+  }
 
+  a {
+    text-decoration: underline;
+  }
 
-      /* Links */
-      .div-esqueceu a {
-        color: rgb(0, 0, 0);
-        font-weight: 500;
-        opacity: 80%;
-        text-align: right;
-      }
+  /* Botões */
+  .div-botao {
+    margin-top: 3%;
+    text-align: center;
+  }
 
-      #cadastre-se {
-        color: green;
-      }
+  button {
+    width: 100%;
+    padding: 2.5%;
+    border-radius: 18px;
+    border: none;
+    font-size: 1.5em;
+    background-color: #fa6900;
+    min-width: 95%;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
-      a {
-        text-decoration: underline;
-      }
+  .div-botao button:hover {
+    background-color: #ff7817;
+    transition: 0.2s ease-out;
+  }
 
-      /*  Botões */
-      .div-botao {
-        margin-top: 3%;
-        text-align: center;
-      }
+  /* Media Queries */
 
-      button {
-        width: 100%;
-        padding: 2.5%;
-        border-radius: 18px;
-        border: none;
-        font-size: 1.5em;
-        background-color: #fa6900;
-        min-width: 95%;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-      }
+  /* Tablet */
+  @media (max-width: 1024px) {
+    #container {
+      width: 100%;
+    }
 
-      /* Transições e efeitos */
-      .div-botao button:hover {
-        background-color: #ff7817;
-        transition: 0.2s ease-out;
-      }
-    </style>
+    .container-aside {
+      width: 100%;
+      min-height: auto;
+    }
+
+    .painel-login,
+    .painel-cadastro {
+      margin: 5% 8%;
+    }
+
+    .header-painel h2 {
+      font-size: 2em;
+    }
+
+    .header-painel p {
+      font-size: 1.1em;
+    }
+
+    .logo img {
+      width: 60%;
+      min-width: 50%;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    #container {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .container-aside {
+      width: 100%;
+      min-height: auto;
+    }
+
+    .painel-login,
+    .painel-cadastro {
+      margin: 5% 5%;
+      width: 90%;
+    }
+
+    .logo img {
+      width: 50%;
+      min-width: 40%;
+    }
+
+    .header-painel h2 {
+      font-size: 1.6em;
+    }
+
+    .header-painel p {
+      font-size: 1em;
+    }
+
+    button {
+      font-size: 1.2em;
+      padding: 3%;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 8px;
+    }
+
+    #estado-cidade {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    #estado-cidade .div-input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    /* Ajuste na transição em mobile */
+    #cadastro {
+      transform: none;
+    }
+
+    #container.modo-cadastro #login,
+    #container.modo-cadastro #cadastro {
+      transform: none;
+    }
+
+    #container.modo-cadastro #login {
+      display: none;
+    }
+
+    #container.modo-cadastro #cadastro {
+      display: block;
+      opacity: 1;
+    }
+  }
+</style>
   </head>
-
-  <!-- Login -->
 
   <body>
     <main id="container">
       <aside id="login" class="container-aside login-box">
         <div class="painel-login">
           <div class="logo">
-            <img src="./Logotipo Fiscaliza Já sem fundo.png" alt="Fiscaliza Já Logo">
+            <img
+              src="./Logotipo Fiscaliza Já sem fundo.png"
+              alt="Fiscaliza Já Logo"
+            />
           </div>
           <div class="header-painel">
             <div id="header-login">
@@ -381,17 +457,14 @@
               />
             </div>
 
-            <!-- <div class="div-checkbox">
-            <input type="checkbox" id="lembrar" name="lembrar" />
-            <label for="lembrar">Lembrar</label>
-          </div> -->
-
             <div class="div-esqueceu">
               <a href="#">Esqueceu a senha?</a>
             </div>
 
             <div class="div-botao">
-              <button class="concluirBtn" type="submit">Entrar em sua conta</button>
+              <button class="concluirBtn" type="submit">
+                Entrar em sua conta
+              </button>
             </div>
           </form>
 
@@ -404,19 +477,21 @@
 
       <!-- Cadastro -->
 
-      <aside id="cadastro" class="container-aside" aria-hidden="true">
+      <aside id="cadastro" class="container-aside registro" aria-hidden="true">
         <div class="painel-cadastro">
-           <div class="logo">
-            <img src="./Logotipo Fiscaliza Já sem fundo.png" alt="Fiscaliza Já Logo">
+          <div class="logo">
+            <img
+              src="./Logotipo Fiscaliza Já sem fundo.png"
+              alt="Fiscaliza Já Logo"
+            />
           </div>
           <div class="header-painel">
-              <h2 class="titulo">Crie sua conta e fiscaliza já!</h2>
-              <p>Cadastre-se para fiscalizar sua cidade.</p>
+            <h2 class="titulo">Crie sua conta e fiscaliza já!</h2>
+            <p>Cadastre-se para fiscalizar sua cidade.</p>
           </div>
 
-
           <!-- Dados Pessoais -->
-           <form action="#" method="post" class="forms">
+          <form action="#" method="post" class="forms">
             <div id="dados-pessoais">
               <div class="div-input">
                 <label for="nome">Nome</label>
@@ -464,41 +539,41 @@
             </div>
             <!-- Estado e Cidade -->
 
-          <div id="estado-cidade">
-            <div class="div-input">
-              <label for="estado">Estado</label>
-              <input
-                type="text"
-                id="estado"
-                name="estado"
-                placeholder="Digite o seu estado"
-                required
-              />
-            </div>
+            <div id="estado-cidade">
+              <div class="div-input">
+                <label for="estado">Estado</label>
+                <input
+                  type="text"
+                  id="estado"
+                  name="estado"
+                  placeholder="Digite o seu estado"
+                  required
+                />
+              </div>
 
-            <div class="div-input">
-              <label for="cidade">Cidade</label>
-              <input
-                type="text"
-                id="cidade"
-                name="cidade"
-                placeholder="Digite o nome de sua cidade"
-                required
-              />
+              <div class="div-input">
+                <label for="cidade">Cidade</label>
+                <input
+                  type="text"
+                  id="cidade"
+                  name="cidade"
+                  placeholder="Digite o nome de sua cidade"
+                  required
+                />
+              </div>
             </div>
+          </form>
+
+          <div class="div-botao">
+            <button class="concluirBtn" type="submit">Criar conta</button>
           </div>
-        </form>
 
-            <div class="div-botao">
-              <button class="concluirBtn" type="submit">Criar conta</button>
-            </div>
-          
-        <div id="voltar-login-box">
-          <p>
-            Já possui uma conta?
-            <a id="voltar-login" href="#">Entrar</a>
-          </p>
-        </div>
+          <div id="voltar-login-box">
+            <p>
+              Já possui uma conta?
+              <a id="voltar-login" href="#">Entrar</a>
+            </p>
+          </div>
         </div>
       </aside>
     </main>
